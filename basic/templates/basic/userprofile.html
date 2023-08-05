@@ -1,0 +1,63 @@
+{%include "main.html"%}
+
+{%block content%}
+  <main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      {%include "basic/topic_comp.html"%}
+
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="mobile-menu">
+          <form class="header__search">
+            <label>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                <title>search</title>
+                <path
+                  d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z"
+                ></path>
+              </svg>
+              <input placeholder="Search for posts" />
+            </label>
+          </form>
+          <div class="mobile-menuItems">
+            <a class="btn btn--main btn--pill" href="#">Browse Topics</a>
+            <a class="btn btn--main btn--pill" href="#">Recent Activities</a>
+          </div>
+        </div>
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="https://randomuser.me/api/portraits/men/11.jpg" />
+            </div>
+          </div>
+        <div class="profile__info">
+          <h3>{{user}}</h3>
+          <p>@{{user}}</p>
+          {% if request.user == user %}
+          <a href="{%url 'updateuser' %}" class="btn btn--main btn--pill">Edit Profile</a>
+          {%endif%}
+        </div>
+        <div class="profile__about">
+          <h3>About</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur illo tenetur
+            facilis sunt nemo debitis quisquam hic atque aut? Ducimus alias placeat optio
+            accusamus repudiandae quis ab ex exercitationem rem?
+          </p>
+        </div>
+        </div>
+        {%include "basic/feed_comp.html"%}
+      </div>
+     
+
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      {%include "basic/activity_comp.html"%}
+      <!-- Activities End -->
+    </div>
+  </main>
+{% endblock content %}

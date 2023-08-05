@@ -1,0 +1,25 @@
+{%extends 'main.html'%}
+{% block content%}
+<style>
+    .home-container{
+display: grid;
+grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+<h1>home page</h1>
+<div class="home-container">
+    <div>
+        
+        {%include "basic/topic_comp.html"%}
+    </div>
+<div>
+    <h3>{{count}} rooms</h3>
+    {%include "basic/feed_comp.html"%}
+<a href="/chatroom_form/">Create Chatroom</a>
+</div>
+<div>
+  {%include "basic/activity_comp.html"%}
+</div>
+</div>
+
+{% endblock content%}

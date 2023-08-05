@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{%block content%}
+<style>
+    .main-class{
+   display:grid;
+   grid-template-columns : 3fr 1fr;
+    }
+</style>
+<h1>{{room.name}}</h1>
+<p>{{room.description}}</p>
+
+<hr>
+<div class="main-class">
+<div>
+    <h3>Conversation</h3>
+    <hr>
+{% for message in room_messages %}
+{%if request.user == message.user%}
+<a href="{%url 'deletemessage' message.id %}">delete</a>
+{% endif %}
+<h5> @{{message.user}}  {{message.created|timesince}} ago</h5>
+<h4>{{message.body}}</h4>
+<hr>
+{%endfor%}
+    {%if request.user.is_authenticated%}
+    <form action="" method="POST">
+        {%csrf_token%}
+        <input type="text" name="body" placeholder="type a message...">
+    </form>
+    {%else%}
+     <h5><a href="{% url 'loginpage'%}">login</a> to post a message</h5>
+     {%endif%}
+</div>
+<div>
+    <h3>Chatroom-Members</h3>
+   
+    {%for member in members %}
+    <a>@{{member}}</a>
+    <hr>
+    {%endfor%}
+</div>
+</div>
+{% endblock content %}
